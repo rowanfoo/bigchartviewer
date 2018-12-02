@@ -1,0 +1,95 @@
+
+
+
+<html>
+
+
+
+    <head>
+
+
+
+        <script src = "/bigchartsviewer/js/angular.min.js"></script>
+        <script src = "/bigchartsviewer/js/angular-animate.min.js"></script>
+        <script src = "/bigchartsviewer/js/angular-aria.min.js"></script>
+        <script src = "/bigchartsviewer/js/angular-messages.min.js"></script>
+        <script src = "/bigchartsviewer/js/angular-material.min.js"></script>
+        <script src = "/bigchartsviewer/js/angular-route.js"></script>
+
+
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+
+
+
+
+
+        <!--<script src="https://code.highcharts.com/stock/highstock.js"></script>-->
+
+
+
+        <script src="/bigchartsviewer/templates/config.js"></script>
+
+           <script src = "/bigchartsviewer/workjs/mychart.js"></script>
+
+        <link rel = "stylesheet" href = "/bigchartsviewer/css/angular-material.min.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" >
+
+
+
+        <script type="text/javascript">
+
+            var module = angular.module('firstApplication', ['ngMaterial','ngRoute']);
+
+
+
+            module.controller('sideNavController', ['$rootScope','$scope','$http','$interval', function($rootScope,$scope,$http, $interval){
+                console.log('HERE IN CONTROLLER');
+
+                 $http.get("http://localhost:8080/getimage?code=bhp").then(function (data) {
+                    // console.log( ' SUBMIT  IMAGE    ----'+JSON.stringify(  data, null, "    ") );
+                     console.log('IMAGE');
+                     $scope.image = data.data.imagedata;
+
+
+                });
+
+
+
+
+
+
+                console.log('DONE CONTROLLER');
+
+
+
+
+
+
+            }]);
+        </script>
+
+
+    </head>
+    <body ng-app="firstApplication" style="background-color: none" layout="row" ng-controller="sideNavController">
+    <md-content layout-padding>
+        <img alt="Embedded Image" src="{{image}}">
+
+
+    </md-content>
+</body>
+</html>
+
+
